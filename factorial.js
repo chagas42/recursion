@@ -1,17 +1,4 @@
-import readline from "readline";
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-const question = (query) => {
-  return new Promise((resolve) => {
-    rl.question(query, (answer) => {
-      resolve(answer);
-    });
-  });
-};
+import { close, question } from "./utils.js";
 
 function factorial(n) {
   if (n === 0 || n === 1) {
@@ -26,12 +13,13 @@ async function main() {
 
   if (isNaN(num) || num < 0) {
     console.log("Please enter a valid non-negative integer.");
-    rl.close();
-    return;
+    close();
+    return -1;
   }
 
   console.log(`is ${factorial(num)}`);
-  rl.close();
+  close();
+  return 0;
 }
 
 main();
